@@ -30,6 +30,41 @@
 				document.getElementById("myAge").innerHTML = age;
 			}
 		</script>
+		<!-- Click for next slide -->
+		<script>
+			// disable context menu
+			if (document.addEventListener) {
+				document.addEventListener('contextmenu', function (e) {
+					e.preventDefault();
+				}, false);
+			} else {
+				document.attachEvent('oncontextmenu', function () {
+					window.event.returnValue = false;
+				});
+			}
+
+			// add mouse handler
+			window.addEventListener("mousedown", function(e) {
+				// handle click on anchor
+				if(e.target && e.target.localName && e.target.localName.toLowerCase() === "a") return;
+
+				// handle click on slide
+				var contains = false;
+				e.path.forEach(element => {
+					if(!contains){
+						if(element.className 
+						&& element.className.includes("present")
+						) {
+							e.preventDefault(); // stop redirect
+							if(e.button === 0) Reveal.next();
+							if(e.button === 2) Reveal.prev();
+							contains = true;
+							return;
+						}
+					}
+				});
+			}, false);
+		</script>
 	</head>
 	<body onload="calcMyAge(1984, 9, 15);">
 		<div class="reveal">
@@ -38,7 +73,7 @@
 
 				<section>
 					<h1>Herzlich willkommen!</h1>
-					<h3>Eine kurze, persönliche Vorstellung</h3>
+					<h4>Eine kurze, persönliche Vorstellung</h4>
 					<p><small>erstellt von <a href="https://github.com/sneufeind">Sven Neufeind</a></small></p>
 				</section>
 				
@@ -48,7 +83,7 @@
 					</section>
 					<section>
 						<h2>Sven Neufeind</h2>
-						<p><b><span id="myAge">irgendwas zwischen 25 und 100</span> Jahre</b> alt</p>
+						<p><span id="myAge">irgendwas zwischen 25 und 100</span> Jahre</p>
 						<p><span class="fragment highlight-green">glücklichst</span> verheiratet</p>						
 						<p class="fragment">ein Teamplayer</p>
 						<p class="fragment">neugierig</p>
@@ -56,27 +91,41 @@
 						<p class="fragment">und ...</p>
 					</section>
 					<section>
-						<h2>Entwickler aus <span class="fragment highlight-red">Leidenschaft</span></h2>
+						<h3>Entwickler aus <span class="fragment highlight-red">Leidenschaft</span></h3>
 						<div class="fragment">
-							<p><strong>Sprachen</strong>:</p>
-							<ul>Java</ul>
-							<ul>Groovy</ul>
-							<ul>Python</ul>
-							<ul>HTML</ul>
-							<ul>Javascipt</ul>
-							<ul>Javascipt</ul>
-							<ul>Ansible</ul>
-							<ul>UML</ul>
-							<ul>...</ul>
+							<p class="highlighted-blur"><strong>Sprachen</strong>:</p>
+							<pre><code class="hljs" data-trim contenteditable>
+									public boolean kannSprechen(String sprache) {
+										switch(sprache){
+											case "Java": return true;
+											case "Groovy": return true;
+											case "Python": return true;
+											case "C/C++": return true;
+											case "HTML": return true;
+											case "Javascipt": return true;
+											case "UML": return true;
+											case "SQL": return true;
+											default:   throw new CommingSoonException();
+										}
+									}
+							</code></pre>
+
+							<div class="fragment">
+								<ul>Deutsch</ul>
+								<ul>Englisch</ul>
+								<ul>Japanisch</ul>
+							</div>
 						</div>
-						<br>
-						<div class="fragment">
-							<p><strong>Spezialgebiete</strong>:</p>
-							<ul>CI/CD</ul>
-							<ul>Cloud Technologien</ul>
-							<ul>Machine Learning</ul>
-							<ul>Web- und Backendentwicklung</ul>
-						</div>
+					</section>
+					<section>
+						<h3>Entwickler aus <span class="highlighted-red">Leidenschaft</span></h3>
+						<p class="highlighted-blur"><strong>Spezialgebiete</strong>:</p>
+
+						<p class="fragment">Continuous Integration / Continuous Delivery</p>
+						<p class="fragment">Web- und Backendentwicklung</p>
+						<p class="fragment">Cloud Technologie</p>
+						<p class="fragment">Machine Learning</p>
+						<p class="fragment">Embedded Systems</p>
 					</section>
 				</section>
 
@@ -86,72 +135,83 @@
 					</section>
 					<section>
 						<h2>Bachelor of Engineering</h2>
-						<p class="fragment">2007 - 2010</p> 
-						<p class="fragment fade-in-then-semi-out">Ingenieursstudium der Mechatronik</p>
-						<p class="fragment">Auslandssemester in Japan
-							<br>
-							<small>TÜV Rheinland Japan Ltd.</small>
-						</p>
+						<p>2007 - 2010</p>
+						<p><small>Ingenieursstudium der Mechatronik</small></p>
+						<div class="fragment">
+							<p >Auslandssemester in Japan</p>
+							<p><small class="highlighted-blur">TÜV Rheinland Japan Ltd., Yokohama</small></p>
+						</div>
 					</section>
 					<section>
 						<h2>Master of Engineering</h2>
 						<p>2010 - 2012</p> 
-						<p class="fragment fade-in-then-semi-out">Ingenieursstudium der Mechatronik</p>
-						<p class="fragment">Masterthesis im Bereich Machine Learning
-							<br>
-							<small>Task9 GmbH</small>
-						</p>
+						<p><small>Ingenieursstudium der Mechatronik</small></p>
+						<div class="fragment">
+							<p >Masterthesis im Bereich Machine Learning</p>
+							<p><small class="highlighted-blur">Task9 GmbH, Bochum</small></p>
+						</div>
 					</section>
 					<section>
 						<h2>Product Engineer</h2>
 						<p>2012 - 2013</p>
 						<p><small>Keil Werkzeugfabrik GmbH</small></p>
-						<h4 class="fragment fade-in-then-semi-out">vielseitiges Aufgabengebiet</h4>
+						<p class="fragment fade-in-then-semi-out">vielseitiges Aufgabengebiet</p>
 						<div class="fragment">
-							<ul>Produktentwicklung</ul>
-							<ul>Prozessoptimierung</ul>
-							<ul>Qualitätskontrolle</ul>
-							<ul>Vertriebsunterstützung</ul>
-							<ul>Reklamationsabwicklung</ul>
-							<ul>uvm.</ul>
+							<ul><small>
+								<li>Produktentwicklung</li>
+								<li>Prozessoptimierung</li>
+								<li>Qualitätskontrolle</li>
+								<li>Vertriebsunterstützung</li>
+								<li>Reklamationsabwicklung</li>
+								<li>uvm.</li>
+							</small></ul>
 						</div>
 					</section>
 					<section>
 						<h2>Softwareentwickler (Java)</h2>
 						<p>2013 - 2016</p>
 						<p><small>Suretec Systems GmbH</small></p>
-						<h4 class="fragment fade-in-then-semi-out">Projekte</h4>
+						<p class="fragment fade-in-then-semi-out">Projekte</p>
 						<div class="fragment">
-							<ul>Beratungsqualität</ul>
-							<ul>Integration in Ruv.Connect</ul>
+							<ul><small>
+								<li>Beratungsqualit&auml;t</li>
+								<li>Integration in R+V-Connect</li>
+							</small></ul>
 						</div>
 					</section>
 					<section>
 						<h2>Systementwickler</h2>
 						<p>2016 - 2018</p>
-						<p><small>R+V Allgemeine Versicherung AG<span class="fragment">, ZI-SE-MR-G1</span></small></p>
-						<h4 class="fragment fade-in-then-semi-out">Projekte</h4>
+						<p><small>R+V Allgemeine Versicherung AG, <span class="highlighted-green">ZI-SE-MR-G1</span></small></p>
+						<p class="fragment fade-in-then-semi-out">Projekte</p>
 						<div class="fragment">
-							<ul>Ruv.Connect</ul>
-							<ul>zenTAA</ul>
-							<ul>time.to.customer</ul>
+							<small>
+								<ul>R+V-Connect</ul>
+								<ul>zenTAA</ul>
+								<ul>time.to.customer</ul>
+							</small>
 						</div>
 					</section>
 					<section>
 						<h2>Systementwickler</h2>
 						<p>seit 2018</p>
-						<p><small>R+V Allgemeine Versicherung AG<span class="fragment">, ZI-SE-AS-GA</span></small></p>
-						<h4 class="fragment fade-in-then-semi-out">Projekte</h4>
+						<p><small>R+V Allgemeine Versicherung AG, <span class="highlighted-green">ZI-SE-AS-GA</span></small></p>
+						<p class="fragment fade-in-then-semi-out">Projekte</p>
 						<div class="fragment">
-							<ul>Citrus</ul>
-							<ul>time.to.customer</ul>
-							<ul>Themenradar</ul>
+							<small>
+								<ul>time.to.customer</ul>
+								<ul>Citrus</ul>
+								<ul>Themenradar</ul>
+							</small>
 						</div>
-						<h4 class="fragment fade-in-then-semi-out">Aufgaben</h4>
+
+						<p class="fragment fade-in-then-semi-out">Schwerpunkte</p>
 						<div class="fragment">
-							<ul>Cloud Native Stack</ul>
-							<ul>Event Driven Architecture</ul>
-							<ul>Domain Driven Design</ul>
+							<small>
+								<ul>Cloud Native Stack</ul>
+								<ul>Event Driven Architecture</ul>
+								<ul>Domain Driven Design</ul>
+							</small>
 						</div>
 					</section>
 				</section>
@@ -162,24 +222,26 @@
 					</section>
 					<section>
 						<h2>Ich m&ouml;chte IT-Architekt werden, weil...</h2>
-						<p class="fragment">... ich <span class="fragment highlight-blue">technisch</span> sehr versiert bin.</p>
-						<p class="fragment">... ich stets an neuen, <span class="fragment highlight-blue">innovativ</span>en Dingen interessiert bin.</p>
-						<p class="fragment">... ich somit der <span class="fragment highlight-blue">R+V helfen</span> kann, für die Zukunft gut aufgestellt zu sein.</p>
-						<p class="fragment">... es einfach der n&auml;chste <span class="fragment highlight-blue">logisch</span>e Schritt ist.</p>
+						<p class="fragment">... ich <span class="highlighted-blue">technisch</span> sehr versiert bin.</p>
+						<p class="fragment">... ich stets an <span class="highlighted-blue">innovativ</span>en Dingen interessiert bin.</p>
+						<p class="fragment">... ich aktiv die <span class="highlighted-blue">Zukunft gestalten</span> m&ouml;chte.</p>
+						<p class="fragment">... ich somit der <span class="highlighted-blue">R+V helfen</span> kann, gut aufgestellt zu sein.</p>
+						<p class="fragment">... es f&uuml;r meine Entwicklung der n&auml;chste <span class="highlighted-blue">logisch</span>e Schritt ist.</p>
 					</section>
 					<section>
-						<h2>Was w&uuml;rde sich f&uuml;r mich &auml;ndern?</h2>
-						<p class="fragment">Etwas weniger Detailtiefe, aber daf&uuml;r mehr Weitblick.</p>
-						<p class="fragment">Chance mehr Verantwortung &uuml;bernehmen zu k&ouml;nnen als bisher.</p>
-						<p class="fragment fade-in-then-semi-out">Die SE muss auf einen engagierten Entwickler verzichten.</p>
+						<h2>Was w&uuml;rde sich &auml;ndern?</h2>
+						<p class="fragment">Chance <span class="highlighted-green">mehr Verantwortung</span> zu &uuml;bernehmen</p>
+						<p class="fragment">M&ouml;glichkeit <span class="highlighted-green">aktiv</span> zu <span class="highlighted-green">gestalten</span></p>
+						<p class="fragment">Etwas <span class="highlighted-red">weniger Detailtiefe</span>, <span class="fragment"> daf&uuml;r <span class="highlighted-green">mehr Weitblick</span></span></p>
+						<p class="fragment fade-in-then-semi-out">Die SE muss auf einen engagierten Entwickler <span class="highlighted-red">verzichten</span>... ;-)</p>
 					</section>
 				</section>
 
 				<section>
 					<h1>Vielen Dank</h1>
-					<p class="fragment grow highlight-green">für ihr Interesse</span> und</p>
+					<p class="fragment grow highlighted-green">für ihr Interesse</span> und</p>
 					<p class="fragment shrink">dass Sie sich </p>
-					<p class="fragment grow highlight-blue">die Zeit</p>
+					<p class="fragment grow highlighted-blue">die Zeit</p>
 					<p class="fragment shrink">genommen haben!</p>
 				</section>
 

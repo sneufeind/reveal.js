@@ -48,6 +48,21 @@ body {
   color: #000; }
 
 /*********************************************
+ * COLOR STYLES
+ *********************************************/
+ .highlighted-red {
+  color: #ff2c2d; }
+
+.highlighted-green {
+  color: #17ff2e; }
+
+.highlighted-blue {
+  color: #1b91ff; }
+
+.highlighted-blur {
+    opacity: 0.5; }
+
+/*********************************************
  * VIEW FRAGMENTS
  *********************************************/
 .reveal .slides section .fragment {
