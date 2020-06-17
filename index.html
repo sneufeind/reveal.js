@@ -1,10 +1,10 @@
 <!doctype html>
-<html>
+<html lang="de">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Selbstpräsentation</title>
+		<title>Domain Driven Design</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css" id="theme">
@@ -21,15 +21,6 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
-		<!-- Calculate current age -->
-		<script>
-			function calcMyAge(year, month, day) {
-				var dateOfBirth = new Date(year.toString(), (month-1).toString(), day.toString());
-				var ageDate = new Date(Date.now() - dateOfBirth.getTime()); // miliseconds from epoch
-    			var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-				document.getElementById("myAge").innerHTML = age;
-			}
-		</script>
 		<!-- Click for next slide -->
 		<script>
 			// disable context menu
@@ -66,186 +57,121 @@
 			}, false);
 		</script>
 	</head>
-	<body onload="calcMyAge(1984, 9, 15);">
+	<body>
 		<div class="reveal">
 
 			<div class="slides">
 
 				<section>
-					<h1>Herzlich willkommen!</h1>
-					<h4>Eine kurze, persönliche Vorstellung</h4>
-					<p><small>erstellt von <a href="https://github.com/sneufeind">Sven Neufeind</a></small></p>
+					<h1>Domain Driven Design</h1>
+					<br>
+					<h4>Gute Softwareentwicklung mit DDD</h4>
+					<p><small>erstellt von <a href="https://github.com/sneufeind" target="_blank" rel="noopener noreferrer">Sven Neufeind</a></small></p>
 				</section>
 				
 				<section>
 					<section>
-						<h1>Wer ist der Kerl?</h1>
+						<h1>Was ist DDD?</h1>
 					</section>
 					<section>
-						<h2>Sven Neufeind</h2>
-						<p><span id="myAge">irgendwas zwischen 25 und 100</span> Jahre</p>
-						<p><span class="fragment highlight-green">glücklichst</span> verheiratet</p>						
-						<p class="fragment">ein Teamplayer</p>
-						<p class="fragment">wissbegierig</p>
-						<p class="fragment">engagiert</p>
-						<p class="fragment">und ...</p>
-					</section>
-					<section>
-						<h3>Entwickler aus <span class="fragment highlight-red">Leidenschaft</span></h3>
+						<h2>Domain Driven Design</h2>
 						<div class="fragment">
-							<p class="highlighted-blur"><strong>Sprachen</strong>:</p>
+							<p>Methode für die Entwicklung von Software</p>
+							<p class="fragment">Software ist <span class="highlighted-red">kein Selbstzweck</span>, sondern erfüllt eine <span class="highlighted-green">fachliche Aufgabe</span></p>
+							<p class="fragment">DDD rückt die Fachlichkeit in den Mittelpunkt</p>
+							<p class="fragment">Ganzheitlicher Ansatz Entwurf und Entwicklung zu vereinen</p>
+						</div>
+					</section>
+					<section>
+						<h2>Die Domäne</h2>
+						<div class="fragment">
+							<p>Ein abgrenztes Problemfeld</p>
+							<p>=> fachlich motivierte Aufgabe</p>
+							<p>Hält die Fachlichkeit zusammen</p> <!-- TODO besser formulieren Kohärenz-->
+						</div>
+					</section>
+					<section>
+						<h2>Ubiquitous Language</h2>
+						<div class="fragment">
+							<p><span class="fragment highlight-red">Allgegenwärtige</span> Sprache</p>
+							<p class="fragment">Fachbegriffe findet man überall wieder - auch im Code</p>
+							<p class="fragment">Entwickler müssen von Fachexperten lernen</p>
+							<p class="fragment">Fachbegriffe werden zu Klassen - der Code wird sprechender</p>
+						</div>
+					</section>
+					<section>
+						<h2>Ubiquitous Language</h2>
+						<div class="fragment">
+							<p>Negativ-Beispiel</p>
 							<pre><code class="hljs" data-trim contenteditable>
-									public boolean kannSprechen(String sprache) {
-										switch(sprache){
-											case "Java": return true;
-											case "Groovy": return true;
-											case "Python": return true;
-											case "C/C++": return true;
-											case "HTML": return true;
-											case "Javascipt": return true;
-											case "UML": return true;
-											case "SQL": return true;
-											default:   throw new CommingSoonException();
-										}
-									}
+								public class SoftwareEntwickler {
+								  private Set&lt;String&gt; sprachen = new HashSet&lt;&gt;();
+
+								  public void addSprache(String sprache) {
+								    this.programmierSprachen.add(sprache);
+								  }
+								}
 							</code></pre>
+						</div>
+					</section>
+					<section>
+						<h2>Ubiquitous Language</h2>
+						<div class="fragment">
+							<p>Positiv-Beispiel</p>
+							<pre><code class="hljs" data-trim contenteditable>
+								public class ProgrammierSprache {
+								  private String name;
 
-							<div class="fragment">
-								<ul>Deutsch</ul>
-								<ul>Englisch</ul>
-								<ul>Japanisch</ul>
-							</div>
-						</div>
-					</section>
-					<section>
-						<h3>Entwickler aus <span class="highlighted-red">Leidenschaft</span></h3>
-						<p class="highlighted-blur"><strong>Spezialgebiete</strong>:</p>
-						<p class="fragment">Web- und Backendentwicklung</p>
-						<p class="fragment">Continuous Integration / Continuous Delivery</p>
-						<p class="fragment">Cloud Technologie</p>
-						<p class="fragment">K&uuml;nstliche Intelligenz</p>
-						<p class="fragment">Embedded Systems</p>
-					</section>
-				</section>
+								  public ProgrammierSprache(String name) {
+								    this.name = name;
+								  }
+								}
 
-				<section>
-					<section>
-						<h1>Was hat er bisher gemacht?</h1>
-					</section>
-					<section>
-						<h2>Bachelor of Engineering</h2>
-						<p>2007 - 2010</p>
-						<p><small>Ingenieursstudium der Mechatronik</small></p>
-						<div class="fragment">
-							<p >Auslandssemester in Japan</p>
-							<p><small class="highlighted-blur">TÜV Rheinland Japan Ltd., Yokohama</small></p>
-						</div>
-					</section>
-					<section>
-						<h2>Master of Engineering</h2>
-						<p>2010 - 2012</p> 
-						<p><small>Ingenieursstudium der Mechatronik</small></p>
-						<div class="fragment">
-							<p >Masterthesis im Bereich Machine Learning</p>
-							<p><small class="highlighted-blur">Task9 GmbH, Bochum</small></p>
-						</div>
-					</section>
-					<section>
-						<h2>Product Engineer</h2>
-						<p>2012 - 2013</p>
-						<p><small>Keil Werkzeugfabrik GmbH</small></p>
-						<p class="fragment fade-in-then-semi-out">vielseitiges Aufgabengebiet</p>
-						<div class="fragment">
-							<ul><small>
-								<li>Produktentwicklung</li>
-								<li>Prozessoptimierung</li>
-								<li>Qualitätskontrolle</li>
-								<li>Vertriebsunterstützung</li>
-								<li>Reklamationsabwicklung</li>
-								<li>uvm.</li>
-							</small></ul>
-						</div>
-					</section>
-					<section>
-						<h2>Softwareentwickler (Java)</h2>
-						<p>2013 - 2016</p>
-						<p><small>Suretec Systems GmbH</small></p>
-						<p class="fragment fade-in-then-semi-out">Projekte</p>
-						<div class="fragment">
-							<ul><small>
-								<li>Beratungsqualit&auml;t</li>
-								<li>Integration in R+V-Connect</li>
-							</small></ul>
-						</div>
-					</section>
-					<section>
-						<h2>Systementwickler</h2>
-						<p>2016 - 2018</p>
-						<p><small>R+V Allgemeine Versicherung AG, <span class="highlighted-green">ZI-SE-MR-G1</span></small></p>
-						<p class="fragment fade-in-then-semi-out">Projekte</p>
-						<div class="fragment">
-							<small>
-								<ul>R+V-Connect</ul>
-								<ul>zenTAA</ul>
-								<ul>time.to.customer</ul>
-							</small>
-						</div>
-					</section>
-					<section>
-						<h2>Systementwickler</h2>
-						<p>seit 2018</p>
-						<p><small>R+V Allgemeine Versicherung AG, <span class="highlighted-green">ZI-SE-AS-GA</span></small></p>
-						<p class="fragment fade-in-then-semi-out">Projekte</p>
-						<div class="fragment">
-							<small>
-								<ul>time.to.customer</ul>
-								<ul>Citrus</ul>
-								<ul>Themenradar</ul>
-							</small>
-						</div>
+								public class SoftwareEntwickler {
+								  private Set&lt;ProgrammierSprache&gt; programmierSprachen = new HashSet&lt;&gt;();
 
-						<p class="fragment fade-in-then-semi-out">Schwerpunkte</p>
-						<div class="fragment">
-							<small>
-								<ul>Domain Driven Design</ul>
-								<ul>Cloud Native Stack</ul>
-								<ul>Event Driven Architecture</ul>
-							</small>
+								  public void erlent(ProgrammierSprache sprache) {
+								    this.programmierSprachen.add(sprache);
+								  }
+								}
+							</code></pre>
 						</div>
 					</section>
 				</section>
 
+				
+
+			<!-- TEMPLATE
+				<section>
+					<h1></h1>
+					<section>
+						<h2></h2>
+						<div class="fragment">
+							<p></p>
+						</div>
+					</section>
+				</section>
+			-->
+
 				<section>
 					<section>
-						<h1>Was ist sein Ziel?</h1>
-					</section>
-					<section>
-						<h2>Ich m&ouml;chte IT-Architekt werden, weil...</h2>
-						<p class="fragment">... ich <span class="highlighted-blue">technisch</span> sehr versiert bin.</p>
-						<p class="fragment">... ich stets an <span class="highlighted-blue">innovativ</span>en Dingen interessiert bin.</p>
-						<p class="fragment">... ich <span class="highlighted-blue">aktiv</span> die <span class="highlighted-blue">Zukunft gestalten</span> m&ouml;chte.</p>
-						<p class="fragment">... ich somit der <span class="highlighted-blue">R+V helfen</span> kann, gut aufgestellt zu sein.</p>
-						<p class="fragment">... es f&uuml;r meine Entwicklung der n&auml;chste <span class="highlighted-blue">logisch</span>e Schritt ist.</p>
-					</section>
-					<section>
-						<h2>Was w&uuml;rde sich &auml;ndern?</h2>
-						<p class="fragment">Chance <span class="highlighted-green">mehr Verantwortung</span> zu &uuml;bernehmen</p>
-						<p class="fragment">M&ouml;glichkeit <span class="highlighted-green">aktiv</span> zu <span class="highlighted-green">gestalten</span></p>
-						<p class="fragment">Etwas <span class="highlighted-red">weniger Detailtiefe</span>, <span class="fragment"> daf&uuml;r <span class="highlighted-green">mehr Weitblick</span></span></p>
-						<p class="fragment fade-in-then-semi-out">ZI-SE muss auf einen engagierten Entwickler <span class="highlighted-red">verzichten</span>... ;-)</p>
+						<h1>Coding Time</h1>
+						<div class="video">
+							<img src="assets/yes.gif" alt="YES!"  width=400/>
+						</div>
+						<p><small>Zum <a href="https://github.com/sneufeind/hexagonal-architecture-example-java/blob/master/README.md" target="_blank" rel="noopener noreferrer">Beispiel</a></small></p>
 					</section>
 				</section>
 
 				<section>
 					<h1>Vielen Dank</h1>
-					<p class="fragment grow highlighted-green">für ihr Interesse</span> und</p>
-					<p class="fragment shrink">dass Sie sich </p>
+					<p class="fragment grow highlighted-green">für euer Interesse</span> und</p>
+					<p class="fragment shrink">dass ihr euch </p>
 					<p class="fragment grow highlighted-blue">die Zeit</p>
-					<p class="fragment shrink">genommen haben!</p>
+					<p class="fragment shrink">genommen habt!</p>
 				</section>
 
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
