@@ -71,7 +71,7 @@
 				
 				<section>
 					<section>
-						<h1>Was ist DDD?</h1>
+						<h1>Worum geht es bei DDD?</h1>
 					</section>
 					<section>
 						<h2>Domain Driven Design</h2>
@@ -79,36 +79,30 @@
 							<p>Methode für die Entwicklung von Software</p>
 							<p class="fragment">Software ist <span class="highlighted-red">kein Selbstzweck</span>, sondern erfüllt eine <span class="highlighted-green">fachliche Aufgabe</span></p>
 							<p class="fragment">DDD rückt die Fachlichkeit in den Mittelpunkt</p>
+							<p class="fragment"></p>
 							<p class="fragment">Ganzheitlicher Ansatz Entwurf und Entwicklung zu vereinen</p>
 						</div>
 					</section>
 					<section>
-						<h2>Die Domäne</h2>
-						<div class="fragment">
-							<p>Ein abgrenztes Problemfeld</p>
-							<p>=> fachlich motivierte Aufgabe</p>
-							<p>Hält die Fachlichkeit zusammen</p> <!-- TODO besser formulieren Kohärenz-->
-						</div>
-					</section>
-					<section>
 						<h2>Ubiquitous Language</h2>
 						<div class="fragment">
-							<p><span class="fragment highlight-red">Allgegenwärtige</span> Sprache</p>
-							<p class="fragment">Fachbegriffe findet man überall wieder - auch im Code</p>
+							<p><span class="highlighted-blue">Allgegenwärtige</span> Sprache</p>
 							<p class="fragment">Entwickler müssen von Fachexperten lernen</p>
-							<p class="fragment">Fachbegriffe werden zu Klassen - der Code wird sprechender</p>
+							<p class="fragment">Fachbegriffe findet man überall wieder - auch im Code</p>
+							<p class="fragment">Dinge aus der Wirklichkeit werden zu Klassen</p>
+							<p class="fragment">Verhalten dieser Dinge werden zu Methoden</p>
 						</div>
 					</section>
 					<section>
 						<h2>Ubiquitous Language</h2>
-						<div class="fragment">
+						<div>
 							<p>Negativ-Beispiel</p>
 							<pre><code class="hljs" data-trim contenteditable>
 								public class SoftwareEntwickler {
 								  private Set&lt;String&gt; sprachen = new HashSet&lt;&gt;();
 
 								  public void addSprache(String sprache) {
-								    this.programmierSprachen.add(sprache);
+								    this.sprachen.add(sprache);
 								  }
 								}
 							</code></pre>
@@ -116,7 +110,7 @@
 					</section>
 					<section>
 						<h2>Ubiquitous Language</h2>
-						<div class="fragment">
+						<div>
 							<p>Positiv-Beispiel</p>
 							<pre><code class="hljs" data-trim contenteditable>
 								public class ProgrammierSprache {
@@ -137,13 +131,178 @@
 							</code></pre>
 						</div>
 					</section>
+
+					<section>
+						<h2>Domäne</h2>
+						<div class="fragment">
+							<p>Element aus dem <span class="highlighted-blue">Problem</span>raum</p>
+							<p class="fragment">Ein abgrenztes Problemfeld</p>
+							<p class="fragment">Erfüllt eine fachlich motivierte Aufgabe</p>
+							<p class="fragment">Kapselt Dinge, die fachlich zusammengehören</p>
+						</div>
+					</section>
+
+					<section>
+						<h2>Subomäne</h2>
+						<div class="fragment">
+							<p>Element aus dem <span class="highlighted-blue">Problem</span>raum</p>
+							<p class="fragment">Unterelement einer (Sub-)Domäne</p>
+							<p class="fragment">Fachliche Einteilung</p>
+						</div>
+					</section>
+					
+					<section>
+						<h2>Bounded Context</h2>
+						<div class="fragment">
+							<p>Element aus dem <span class="highlighted-blue">Lösungs</span>raum</p>
+							<p class="fragment">Innerhalb des BC's gilt eine ubiquitäre Sprache</p>
+							<p class="fragment">Setzt explizit Grenzen</p>
+							<p class="fragment">Entspricht in der Regel 1 Subdomäne</p>
+							<p class="fragment">Entspricht in der Regel 1 Microservice</p>
+						</div>
+					</section>
 				</section>
 
-				
+				<section>
+					<section>
+						<h1>Wie funktioniert DDD?</h1>
+						<h3>Strategisches Design</h3>
+					</section>
+					<section>
+						<h2>Domainstory Telling</h2>
+						<div class="fragment">
+							<p>Ein Fachexperte erzählt eine Geschichte über sein Business</p>
+							<p class="fragment">Eine 2. Person zeichnet diese Geschichte auf</p>
+							<p class="fragment">Die anderen Teilnehmer können Fragen stellen</p>
+							<p class="fragment">Es entsteht ein Ablauf von wer macht was womit</p>
+						</div>
+					</section>
+					<section>
+						<h2>Domainstory Telling</h2>
+						<div class="fragment">
+							<div class="image">
+								<img src="assets/domainstorytelling.png" alt="Domainstory Telling"  width=800/>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h2>Event Storming</h2>
+						<div class="fragment">
+							<p>Fachexperten und Entwickler finden sich zusammen</p>
+							<p class="fragment">Gemeinsam werden die Domain-Events identifiziert</p>
+							<p class="fragment">Anschließend werden diese in eine zetliche Reihenfolge gebracht</p>
+							<p class="fragment">Um die Events herum werden dann weitere Elemente angeordnet</p>
+						</div>
+					</section>
+					<section>
+						<h2>Event Storming Template</h2>
+						<div class="fragment">
+							<div class="image">
+								<img src="assets/eventstorming_template.jpg" alt="EventStorming Template"  width=600/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h2>Event Storming Beispiel</h2>
+						<div class="fragment">
+							<div class="image">
+								<img src="assets/eventstorming_todomanagement.jpg" alt="EventStorming Todo Management"  width=800/>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h2>Wie schneide ich meine Domäne richtig?</h2>
+						<div class="fragment">
+							<p>Grenzen im <span class="highlighted-blue">Prozess</span></p>
+							<p class="fragment">Kontextuelle <span class="highlighted-blue">Sprache</span></p>
+							<p class="fragment">Unterschiedlicher <span class="highlighted-blue">Umgang</span> mit Aggregates/Entities</p>
+							<p class="fragment"><span class="highlighted-blue">Abteilungen</span> im Unternehmen</p>
+							<br>
+							<p class="fragment"><span class="highlighted-red">NICHT: Nach Aggregates/Entities selbst</span></p>
+						</div>
+					</section>
+
+					<section>
+						<h2>Context Map</h2>
+						<div class="fragment">
+							<p>Landkarte der Kontexte</p>
+							<p class="fragment">Zeigt Abhängigkeiten zu anderen Kontexten auf</p>
+							<p class="fragment">Stellt Art der Beziehung, der technischen Umsetzung sowie der Modelle dar</p>
+							<p class="fragment"></p>
+						</div>
+					</section>
+					<section>
+						<h2>Context Map</h2>
+						<h3>Art der Beziehung</h3>
+						<ul class="fragment">
+							<li>Partnership</li>
+							<li class="fragment">Customer-Supplier</li>
+							<li class="fragment">Confirmist</li>
+							<li class="fragment">Separate Ways</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Context Map</h2>
+						<h3>Art der technischen Umsetzung</h3>
+						<ul class="fragment">
+							<li>Privatschnittstelle</li>
+							<li class="fragment">Open-Host Service</li>
+							<li class="fragment">Shared Kernel</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Context Map</h2>
+						<h3>Art der Modelle</h3>
+						<ul class="fragment">
+							<li>Pubished Language</li>
+							<li class="fragment">Anti-Corruption Layer</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Wie hilft mir DDD?</h1>
+						<h3>Taktisches Design</h3>
+					</section>
+					<section>
+						<h2>(Domain-)Entity</h2>
+						<div class="fragment">
+							<p>Objekte eines Bounded Contexts, die der Anwender bearbeitet</p>
+							<p class="fragment">Hat <span class="highlighted-green">immer</span> eine ID</p>
+							<p class="fragment">Darf (Domain-)Entities enthalten</p>
+							<p class="fragment">Darf ValueObjects enthalten</p>
+						</div>
+					</section>
+					<section>
+						<h2>ValueObject</h2>
+						<div class="fragment">
+							<p>Anhand seiner Attribute eindeutig</p>
+							<p class="fragment">Hat <span class="highlighted-red">keine</span> ID</p>
+							<p class="fragment">Werden vom Anwender <span class="highlighted-red">nicht</span> bearbeitet</p>
+							<p class="fragment">Darf keine (Domain-)Entities enthalten</p>
+							<p class="fragment">Darf ValueObjects enthalten</p>
+							<p class="fragment">Beispiel: Adresse, Bankverbindung</p>
+						</div>
+					</section>
+					<section>
+						<h2>Aggregate</h2>
+						<div class="fragment">
+							<p>Haben eine Entity als Wurzel</p>
+							<p class="fragment">Hat <span class="highlighted-green">immer</span> eine ID</p>
+							<p class="fragment">Klammert Entities und ValueObjects</p>
+							<p class="fragment">Repräsentiert eine Transaktionsklammer</p>
+						</div>
+					</section>
+				</section>
 
 			<!-- TEMPLATE
 				<section>
-					<h1></h1>
+					<section>
+						<h1></h1>
+					</section>
 					<section>
 						<h2></h2>
 						<div class="fragment">
@@ -156,10 +315,37 @@
 				<section>
 					<section>
 						<h1>Coding Time</h1>
-						<div class="video">
-							<img src="assets/yes.gif" alt="YES!"  width=400/>
+						<div class="image">
+							<img src="assets/yes.gif" alt="YES!"  width=600/>
 						</div>
 						<p><small>Zum <a href="https://github.com/sneufeind/hexagonal-architecture-example-java/blob/master/README.md" target="_blank" rel="noopener noreferrer">Beispiel</a></small></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Zum Vertiefen</h1>
+					</section>
+					<section>
+						<h4>Domain Driven Design - Tackling Complexity in the Heart of Software</h4>
+						<h5>Eric Evans</h5>
+						<div class="image">
+							<img src="assets/book_ddd_evans.jpg" alt="Book DDD Evans" height=400/>
+						</div>
+					</section>
+					<section>
+						<h4>Implementing Domain Driven Design</h4>
+						<h5>Vaughn Vernon</h5>
+						<div class="image">
+							<img src="assets/book_implementing-ddd.jpg" alt="Book DDD Vernon" height=400/>
+						</div>
+					</section>
+					<section>
+						<h4>Domain Driven Design - Tackling Complexity in the Heart of Software</h4>
+						<h5>Vaughn Vernon, Carola Lilienthal & Henning Schwentner</h5>
+						<div class="image">
+							<img src="assets/book_ddd-kompakt.jpg" alt="Book DDD kompakt" height=400/>
+						</div>
 					</section>
 				</section>
 
