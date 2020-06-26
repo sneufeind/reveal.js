@@ -41,6 +41,7 @@
 
 				// handle click on slide
 				var contains = false;
+				/*
 				e.path.forEach(element => {
 					if(!contains){
 						if(element.className 
@@ -54,6 +55,7 @@
 						}
 					}
 				});
+				*/
 			}, false);
 		</script>
 	</head>
@@ -71,24 +73,24 @@
 				
 				<section>
 					<section>
-						<h1>Worum geht es bei DDD?</h1>
+						<h1>Was ist Domain Driven Design?</h1>
 					</section>
 					<section>
 						<h2>Domain Driven Design</h2>
 						<div class="fragment">
-							<p>Methode für die Entwicklung von Software</p>
+							<p>Methode zur Entwicklung von Software</p>
+							<p class="fragment">DDD rückt die <span class="highlighted-blue">Fachlichkeit</span> in den Mittelpunkt</p>
 							<p class="fragment">Software ist <span class="highlighted-red">kein Selbstzweck</span>, sondern erfüllt eine <span class="highlighted-green">fachliche Aufgabe</span></p>
-							<p class="fragment">DDD rückt die Fachlichkeit in den Mittelpunkt</p>
-							<p class="fragment"></p>
-							<p class="fragment">Ganzheitlicher Ansatz Entwurf und Entwicklung zu vereinen</p>
+							<!-- <p class="fragment">Ansatz zur Komplexitätsreduktion</p> -->
+							<p class="fragment">Ganzheitlicher Ansatz, Entwurf und Entwicklung zu vereinen</p>
 						</div>
 					</section>
 					<section>
 						<h2>Ubiquitous Language</h2>
 						<div class="fragment">
-							<p><span class="highlighted-blue">Allgegenwärtige</span> Sprache</p>
-							<p class="fragment">Entwickler müssen von Fachexperten lernen</p>
+							<p>Die <span class="highlighted-blue">1 allgegenwärtige</span>  Sprache</p>
 							<p class="fragment">Fachbegriffe findet man überall wieder - auch im Code</p>
+							<p class="fragment">Entwickler müssen <span class="highlighted-green">von Fachexperten lernen</span></p>
 							<p class="fragment">Dinge aus der Wirklichkeit werden zu Klassen</p>
 							<p class="fragment">Verhalten dieser Dinge werden zu Methoden</p>
 						</div>
@@ -122,10 +124,10 @@
 								}
 
 								public class SoftwareEntwickler {
-								  private Set&lt;ProgrammierSprache&gt; programmierSprachen = new HashSet&lt;&gt;();
+								  private Set&lt;ProgrammierSprache&gt; sprachen = new HashSet&lt;&gt;();
 
 								  public void erlent(ProgrammierSprache sprache) {
-								    this.programmierSprachen.add(sprache);
+								    this.sprachen.add(sprache);
 								  }
 								}
 							</code></pre>
@@ -143,7 +145,7 @@
 					</section>
 
 					<section>
-						<h2>Subomäne</h2>
+						<h2>Subdomäne</h2>
 						<div class="fragment">
 							<p>Element aus dem <span class="highlighted-blue">Problem</span>raum</p>
 							<p class="fragment">Unterelement einer (Sub-)Domäne</p>
@@ -158,15 +160,15 @@
 							<p class="fragment">Innerhalb des BC's gilt eine ubiquitäre Sprache</p>
 							<p class="fragment">Setzt explizit Grenzen</p>
 							<p class="fragment">Entspricht in der Regel 1 Subdomäne</p>
-							<p class="fragment">Entspricht in der Regel 1 Microservice</p>
+							<!-- <p class="fragment">Entspricht in der Regel 1 Microservice</p> -->
+							<p class="fragment">Kann mit anderen BCs interagieren</p>
 						</div>
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h1>Wie funktioniert DDD?</h1>
-						<h3>Strategisches Design</h3>
+						<h1>Strategisches Design</h1>
 					</section>
 					<section>
 						<h2>Domainstory Telling</h2>
@@ -174,7 +176,7 @@
 							<p>Ein Fachexperte erzählt eine Geschichte über sein Business</p>
 							<p class="fragment">Eine 2. Person zeichnet diese Geschichte auf</p>
 							<p class="fragment">Die anderen Teilnehmer können Fragen stellen</p>
-							<p class="fragment">Es entsteht ein Ablauf von wer macht was womit</p>
+							<p class="fragment">Es entsteht ein Ablauf über wer macht was womit</p>
 						</div>
 					</section>
 					<section>
@@ -191,7 +193,7 @@
 						<div class="fragment">
 							<p>Fachexperten und Entwickler finden sich zusammen</p>
 							<p class="fragment">Gemeinsam werden die Domain-Events identifiziert</p>
-							<p class="fragment">Anschließend werden diese in eine zetliche Reihenfolge gebracht</p>
+							<p class="fragment">Anschließend werden diese in eine zeitliche Reihenfolge gebracht</p>
 							<p class="fragment">Um die Events herum werden dann weitere Elemente angeordnet</p>
 						</div>
 					</section>
@@ -213,24 +215,24 @@
 					</section>
 
 					<section>
-						<h2>Wie schneide ich meine Domäne richtig?</h2>
+						<h2>Wie schneide ich meinen Bounded-Context richtig?</h2>
 						<div class="fragment">
 							<p>Grenzen im <span class="highlighted-blue">Prozess</span></p>
 							<p class="fragment">Kontextuelle <span class="highlighted-blue">Sprache</span></p>
 							<p class="fragment">Unterschiedlicher <span class="highlighted-blue">Umgang</span> mit Aggregates/Entities</p>
 							<p class="fragment"><span class="highlighted-blue">Abteilungen</span> im Unternehmen</p>
-							<br>
-							<p class="fragment"><span class="highlighted-red">NICHT: Nach Aggregates/Entities selbst</span></p>
+							<p class="fragment"><span class="highlighted-red">NICHT nach Aggregates/Entities selbst</span></p>
+							<p class="fragment"><span class="highlighted-red">NICHT nach Plattformen</span></p>
 						</div>
 					</section>
 
 					<section>
 						<h2>Context Map</h2>
 						<div class="fragment">
-							<p>Landkarte der Kontexte</p>
-							<p class="fragment">Zeigt Abhängigkeiten zu anderen Kontexten auf</p>
+							<p>Landkarte der Bounded-Contexts</p>
+							<p class="fragment">Zeigt Abhängigkeiten zu anderen Bounded-Contexts auf</p>
 							<p class="fragment">Stellt Art der Beziehung, der technischen Umsetzung sowie der Modelle dar</p>
-							<p class="fragment"></p>
+							<p class="fragment"><span class="highlighted-green">Bewusste</span> Entscheidung</p>
 						</div>
 					</section>
 					<section>
@@ -256,7 +258,7 @@
 						<h2>Context Map</h2>
 						<h3>Art der Modelle</h3>
 						<ul class="fragment">
-							<li>Pubished Language</li>
+							<li>Published Language</li>
 							<li class="fragment">Anti-Corruption Layer</li>
 						</ul>
 					</section>
@@ -264,14 +266,14 @@
 
 				<section>
 					<section>
-						<h1>Wie hilft mir DDD?</h1>
-						<h3>Taktisches Design</h3>
+						<h1>Taktisches Design</h1>
 					</section>
 					<section>
 						<h2>(Domain-)Entity</h2>
 						<div class="fragment">
 							<p>Objekte eines Bounded Contexts, die der Anwender bearbeitet</p>
 							<p class="fragment">Hat <span class="highlighted-green">immer</span> eine ID</p>
+							<p class="fragment">Hat einen eigenen Lebenszyklus</p>
 							<p class="fragment">Darf (Domain-)Entities enthalten</p>
 							<p class="fragment">Darf ValueObjects enthalten</p>
 						</div>
@@ -293,7 +295,7 @@
 							<p>Haben eine Entity als Wurzel</p>
 							<p class="fragment">Hat <span class="highlighted-green">immer</span> eine ID</p>
 							<p class="fragment">Klammert Entities und ValueObjects</p>
-							<p class="fragment">Repräsentiert eine Transaktionsklammer</p>
+							<p class="fragment">Bestimmt die transaktionale Grenze</p>
 						</div>
 					</section>
 				</section>
@@ -327,7 +329,7 @@
 						<h1>Zum Vertiefen</h1>
 					</section>
 					<section>
-						<h4>Domain Driven Design - Tackling Complexity in the Heart of Software</h4>
+						<h4>Domain Driven Design <br> Tackling Complexity in the Heart of Software</h4>
 						<h5>Eric Evans</h5>
 						<div class="image">
 							<img src="assets/book_ddd_evans.jpg" alt="Book DDD Evans" height=400/>
@@ -341,20 +343,33 @@
 						</div>
 					</section>
 					<section>
-						<h4>Domain Driven Design - Tackling Complexity in the Heart of Software</h4>
+						<h4>Domain Driven Design kompakt</h4>
 						<h5>Vaughn Vernon, Carola Lilienthal & Henning Schwentner</h5>
 						<div class="image">
 							<img src="assets/book_ddd-kompakt.jpg" alt="Book DDD kompakt" height=400/>
+						</div>
+					</section>
+					<section>
+						<h4>Clean Architecture</h4>
+						<h5>Rober C. Martin</h5>
+						<div class="image">
+							<img src="assets/book_cleanarch_rcmartin.jpg" alt="Book Clean Architecture" height=400/>
+						</div>
+					</section>
+					<section>
+						<h4>Get Your Hands Dirty on Clean Architecture</h4>
+						<h5>Tom Hombergs</h5>
+						<div class="image">
+							<img src="assets/book_cleanarchdirty_hombergs.jpg" alt="Book DDD kompakt" height=400/>
 						</div>
 					</section>
 				</section>
 
 				<section>
 					<h1>Vielen Dank</h1>
-					<p class="fragment grow highlighted-green">für euer Interesse</span> und</p>
-					<p class="fragment shrink">dass ihr euch </p>
-					<p class="fragment grow highlighted-blue">die Zeit</p>
-					<p class="fragment shrink">genommen habt!</p>
+					<p class="fragment grow highlighted-green">für euer Interesse</span></p>
+					<p class="fragment shrink">und </p>
+					<p class="fragment grow highlighted-blue">eure Zeit</p>
 				</section>
 
 			</div>
